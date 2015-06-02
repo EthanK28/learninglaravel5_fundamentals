@@ -31,7 +31,7 @@ class ArticlesController extends Controller {
 
     public function store(){
         $input = Request::all();
-        $input['published_at'] = Carbon::now();
+//        $input['published_at'] = Carbon::now();
 
         Article::create($input);
 
