@@ -2,6 +2,7 @@
 
 use App\Http\Requests\Request;
 
+
 class CreateArticleRequest extends Request {
 
 	/**
