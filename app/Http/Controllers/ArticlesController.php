@@ -31,11 +31,11 @@ class ArticlesController extends Controller {
         return view('articles.create');
     }
 
-    public function store(){
-        $input = Request::all();
-//        $input['published_at'] = Carbon::now();
+    public function store(CreateArticleRequest $request){
 
-        Article::create($input);
+
+
+        Article::create(Request::all());
 
 
 
