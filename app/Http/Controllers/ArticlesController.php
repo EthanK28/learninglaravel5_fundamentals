@@ -11,7 +11,7 @@ class ArticlesController extends Controller {
 
 	//
     public function index(){
-        $articles = Article::all();
+        $articles = Article::latest('published_at')->unpublished()->get();
 
 //        return view('articles.index', compact('articles'));
         return view('articles.index')->with('articles', $articles);
@@ -20,6 +20,8 @@ class ArticlesController extends Controller {
     public function show($id){
 
         $article = Article::findOrFail($id);
+        dd($article->published_at);
+
 //        return $article;
         return vieW('articles.show', compact('article'));
 
@@ -39,5 +41,7 @@ class ArticlesController extends Controller {
 
         return redirect('articles');
     }
+
+
 
 }
