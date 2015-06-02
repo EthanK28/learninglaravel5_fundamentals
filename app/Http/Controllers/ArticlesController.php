@@ -3,10 +3,11 @@
 use App\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateArticleRequest;
+use App\Http\Requests\ArticleRequest;
 
 use Carbon\Carbon;
-use Request;
+use Illuminate\Http\Request;
+
 
 class ArticlesController extends Controller {
 
@@ -20,8 +21,9 @@ class ArticlesController extends Controller {
 
     public function show($id){
 
+//        dd($id);
         $article = Article::findOrFail($id);
-        dd($article->published_at);
+        //dd($article->published_at);
 
 //        return $article;
         return vieW('articles.show', compact('article'));
@@ -36,7 +38,7 @@ class ArticlesController extends Controller {
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request){
+    public function store(ArticleRequest $request){
 
         $this->validate($request, [
             'title' => 'required|min:3',
@@ -49,6 +51,26 @@ class ArticlesController extends Controller {
 
         return redirect('articles');
     }
+
+    public function edit($id){
+
+        $article = Article::findOrFail($id);
+
+        return view('articles.edit', compact('article'));
+
+
+    }
+
+    public function update($id, ArticleRequest $request){
+        $article = Article::findOrFail($id);
+
+
+        $article->update($request->all());
+
+        return redirect('articles');
+
+    }
+
 
 
 
