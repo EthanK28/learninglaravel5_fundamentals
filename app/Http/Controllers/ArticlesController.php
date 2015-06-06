@@ -15,9 +15,9 @@ class ArticlesController extends Controller {
 
 	//
 
-//    public function __construct(){
-//        $this->middleware('auth', ['except' => 'index']);
-//    }
+    public function __construct(){
+        $this->middleware('auth', ['except' => 'index']);
+    }
 
     public function index(){
         $articles = Article::latest('published_at')->published()->get();
@@ -52,7 +52,9 @@ class ArticlesController extends Controller {
     public function store(ArticleRequest $request){
 
 
+
         Auth::user()->articles()->create($request->all());
+
 
         \Session::flash('flash_message', 'Your article has been created' );
 
