@@ -11,6 +11,7 @@
 |
 */
 
+
 //Route::get('articles', 'ArticlesController@index');
 //
 //Route::get('articles/create', 'ArticlesController@create');
@@ -35,7 +36,12 @@ Route:get('contact', 'PagesController@contact');
 //
 //Route::get('home', 'HomeController@index');
 
-//Route::controllers([
-//	'auth' => 'Auth\AuthController',
-//	'password' => 'Auth\PasswordController',
-//]);
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);
+
+
+Route::get('foo', ['middleware'=>'manager', function(){
+    return "this page may be only viewd by manager";
+}]);

@@ -20,7 +20,17 @@ class AuthController extends Controller {
 
 	use AuthenticatesAndRegistersUsers;
 
-	/**
+    protected $redirectTo = '/articles';
+
+    public function getLogout()
+    {
+        $this->auth->logout();
+
+        return redirect('/articles');
+    }
+
+
+    /**
 	 * Create a new authentication controller instance.
 	 *
 	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
