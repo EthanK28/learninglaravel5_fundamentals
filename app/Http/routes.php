@@ -26,7 +26,9 @@
 
 Route::resource('articles', 'ArticlesController');
 
-
+Route::get('/', function(){
+    return "Home Page";
+});
 //
 Route::get('about', 'PagesController@about');
 
