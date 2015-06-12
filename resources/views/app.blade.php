@@ -8,12 +8,20 @@
 </head>
 <body>
 	<div class="container">
-		@if(Session::has('flash_message'))
-			<div class="alert alert-success">{{ Session::get('flash_message') }}</div>
-		@endif
+        @include('flash::message')
+            {{--flash_notification.message--}}
+        {{--@include('partials.flash')--}}
 		@yield('content')
 	</div>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>>
+
+    <script>
+        $('#flash-overlay-modal').modal();
+//        $('div.alert').not('alert-important').delay(3000).slideUp();
+    </script>
 
 	@yield('footer')
 </body>
 </html>
+
